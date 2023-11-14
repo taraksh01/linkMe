@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/taraksh01/linkMe/issues"
   },
-  "homepage": "https://github.com/taraksh01/linkMe#readme"
+  "homepage": "https://github.com/taraksh01/linkMe#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
 }
