@@ -2,10 +2,7 @@
   "name": "linkme",
   "version": "1.0.0",
   "description": "This is a simple app that let's user post text.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/taraksh01/linkMe.git"
