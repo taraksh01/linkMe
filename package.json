@@ -1,0 +1,26 @@
+{
+  "name": "linkme",
+  "version": "1.0.0",
+  "description": "This is a simple app that let's user post text.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taraksh01/linkMe.git"
+  },
+  "keywords": [
+    "linkme",
+    "LinkMe",
+    "link-me",
+    "Tarak Shaw",
+    "taraksh01"
+  ],
+  "author": "Tarak Shaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taraksh01/linkMe/issues"
+  },
+  "homepage": "https://github.com/taraksh01/linkMe#readme"
+}
