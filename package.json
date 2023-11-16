@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/taraksh01/linkMe#readme",
   "dependencies": {
+    "appwrite": "^13.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
