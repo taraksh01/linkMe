@@ -39,6 +39,17 @@ class AuthorizationService {
       return error;
     }
   }
+
+  async currentUser() {
+    try {
+      const user = await this.account.get();
+      if (user) {
+        return user;
+      }
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 const authService = new AuthorizationService();
