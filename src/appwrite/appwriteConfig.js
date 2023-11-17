@@ -50,6 +50,17 @@ class AuthorizationService {
       return error;
     }
   }
+
+  async logout(sessionId = `current`) {
+    try {
+      const user = await this.account.deleteSession(sessionId);
+      if (user) {
+        return `Logged out successfully`;
+      }
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 const authService = new AuthorizationService();
