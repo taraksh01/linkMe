@@ -22,7 +22,18 @@ class AuthorizationService {
         username
       );
       if (newUser) {
-        return "Account Created successfully";
+        return `Account created successfully`;
+      }
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async login({ email, password }) {
+    try {
+      const user = await this.account.createEmailSession(email, password);
+      if (user) {
+        return `Logged in successfully`;
       }
     } catch (error) {
       return error;
