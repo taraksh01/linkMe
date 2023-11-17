@@ -1,5 +1,5 @@
 import appConfig from "../appConfig/appConfig.js";
-import { Client, Account } from "appwrite";
+import { Client, Account, ID } from "appwrite";
 
 class AuthorizationService {
   client = new Client();
@@ -11,6 +11,22 @@ class AuthorizationService {
       .setProject(appConfig.appwriteProjectId);
 
     this.account = new Account(this.client);
+  }
+
+  async createAccount({ email, password, username }) {
+    try {
+      const newUser = await this.account.create(
+        ID.unique(),
+        email,
+        password,
+        username
+      );
+      if (newUser) {
+        return "Account Created successfully";
+      }
+    } catch (error) {
+      return error;
+    }
   }
 }
 
