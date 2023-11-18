@@ -22,6 +22,7 @@ class AuthorizationService {
         name
       );
       if (newUser) {
+        this.login({ email, password });
         return `Account created successfully`;
       }
     } catch (error) {
