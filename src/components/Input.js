@@ -5,18 +5,28 @@ const Input = forwardRef(
     {
       children,
       label,
+      required = false,
       type = "text",
       placeholder = "type something",
       bgColor = "bg-white",
       color = "text-gray-700",
       className = "",
+      error = "",
       ...props
     },
     ref
   ) => {
     return (
       <div className="mx-auto text-gray-700">
-        {label && <label className="block m-2  text-sm">{label}</label>}
+        {label && (
+          <label className="block m-2  text-sm">
+            {label}
+            {required && <span className="text-red-500">*</span>}
+            {error && (
+              <span className="text-red-500 p-1">This is a required field</span>
+            )}
+          </label>
+        )}
         <input
           type={type}
           placeholder={placeholder}
