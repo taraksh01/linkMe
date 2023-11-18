@@ -13,19 +13,19 @@ class AuthorizationService {
     this.account = new Account(this.client);
   }
 
-  async createAccount({ email, password, username }) {
+  async createAccount({ email, password, name }) {
     try {
       const newUser = await this.account.create(
         ID.unique(),
         email,
         password,
-        username
+        name
       );
       if (newUser) {
         return `Account created successfully`;
       }
     } catch (error) {
-      return error;
+      return error.message;
     }
   }
 
@@ -36,7 +36,7 @@ class AuthorizationService {
         return `Logged in successfully`;
       }
     } catch (error) {
-      return error;
+      return error.message;
     }
   }
 
@@ -47,7 +47,7 @@ class AuthorizationService {
         return user;
       }
     } catch (error) {
-      return error;
+      return error.message;
     }
   }
 
@@ -58,7 +58,7 @@ class AuthorizationService {
         return `Logged out successfully`;
       }
     } catch (error) {
-      return error;
+      return error.message;
     }
   }
 }
