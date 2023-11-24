@@ -59,6 +59,21 @@ class DatabaseService {
       return error.message;
     }
   }
+
+  async deletePost(postId) {
+    try {
+      const post = await this.database.deleteDocument(
+        appconfig.appwritePostDbId,
+        appconfig.appwritePostCollectionId,
+        postId
+      );
+      if (post) {
+        return post;
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
 const databaseService = new DatabaseService();
