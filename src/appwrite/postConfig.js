@@ -41,7 +41,22 @@ class DatabaseService {
         return allPosts;
       }
     } catch (error) {
-      return error;
+      return error.message;
+    }
+  }
+
+  async getPost({ postId }) {
+    try {
+      const post = await this.database.getDocument(
+        appconfig.appwritePostDbId,
+        appconfig.appwritePostCollectionId,
+        postId
+      );
+      if (post) {
+        return post;
+      }
+    } catch (error) {
+      return error.message;
     }
   }
 }
