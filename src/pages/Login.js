@@ -26,8 +26,9 @@ const Login = () => {
     try {
       const res = await authService.login(data);
       if (res === "Logged in successfully") {
+        const user = await authService.currentUser();
+        dispatch(sliceLogin(user));
         navigate("/");
-        dispatch(sliceLogin(data));
       } else {
         setLoginError(res);
         dispatch(sliceLogout());
@@ -46,10 +47,7 @@ const Login = () => {
       </div>
       <h1 className="text-sm text-gray-700">
         Login to your account or{" "}
-        <Link
-          to={"/register"}
-          className="hover:underline text-green-500"
-        >
+        <Link to={"/register"} className="hover:underline text-green-500">
           create now
         </Link>
       </h1>
