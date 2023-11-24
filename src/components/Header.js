@@ -9,6 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
   const navItems = [
     { name: "Home", url: "/", active: true },
+    { name: "Post", url: "/post", active: authStatus === "authorized" },
     { name: "Login", url: "/login", active: authStatus !== "authorized" },
     {
       name: "Create Account",
@@ -22,7 +23,7 @@ const Header = () => {
       <Link to={"/"}>
         <Logo>LinkMe</Logo>
       </Link>
-      <div className="flex gap-4">
+      <div className="flex">
         <div className="">
           {navItems?.map(
             (item) =>
