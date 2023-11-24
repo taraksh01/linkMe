@@ -30,6 +30,20 @@ class DatabaseService {
       return error;
     }
   }
+
+  async getAllPosts() {
+    try {
+      const allPosts = await this.database.listDocuments(
+        appconfig.appwritePostDbId,
+        appconfig.appwritePostCollectionId
+      );
+      if (allPosts) {
+        return allPosts;
+      }
+    } catch (error) {
+      return error;
+    }
+  }
 }
 
 const databaseService = new DatabaseService();
