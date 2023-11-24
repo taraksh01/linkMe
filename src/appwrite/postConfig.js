@@ -1,5 +1,5 @@
 import appconfig from "../appConfig/appConfig";
-import { Client, Databases, Storage } from "appwrite";
+import { Client, Databases, ID, Storage } from "appwrite";
 
 class DatabaseService {
   client = new Client();
@@ -13,6 +13,22 @@ class DatabaseService {
 
     this.database = new Databases(this.client);
     this.storage = new Storage(this.client);
+  }
+
+  async createPost({ post, userId }) {
+    try {
+      const data = await this.database.createDocument(
+        appconfig.appwritePostDbId,
+        appconfig.appwritePostCollectionId,
+        ID.unique(),
+        { post, userId }
+      );
+      if (data) {
+        return data;
+      }
+    } catch (error) {
+      return error;
+    }
   }
 }
 
