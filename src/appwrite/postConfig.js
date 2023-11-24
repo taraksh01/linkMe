@@ -74,6 +74,22 @@ class DatabaseService {
       return error.message;
     }
   }
+
+  async updatePost({ postId, post }) {
+    try {
+      const data = await this.database.updateDocument(
+        appconfig.appwritePostDbId,
+        appconfig.appwritePostCollectionId,
+        postId,
+        { post }
+      );
+      if (data) {
+        return data;
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
 const databaseService = new DatabaseService();
