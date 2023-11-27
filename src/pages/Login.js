@@ -28,6 +28,7 @@ const Login = () => {
       if (res === "Logged in successfully") {
         const user = await authService.currentUser();
         dispatch(sliceLogin(user));
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
         navigate("/");
       } else {
         setLoginError(res);
