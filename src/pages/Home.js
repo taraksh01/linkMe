@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import Post from "./Post";
+import PostCard from "./PostCard";
 import databaseService from "../appwrite/postConfig";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -14,9 +14,9 @@ const Home = () => {
   return authStatus === "authorized" ? (
     <>
       <h1 className="text-center text-5xl m-2">Create a new post</h1>
-      <div className="flex flex-wrap mx-auto max-w-sm bg-zinc-950 justify-center">
+      <div className="flex flex-wrap mx-auto  bg-zinc-950  max-w-md justify-center">
         {allPosts?.documents?.map((post) => (
-          <Post key={post.$id}>{post}</Post>
+          <PostCard key={post.$id}>{post}</PostCard>
         ))}
       </div>
     </>
