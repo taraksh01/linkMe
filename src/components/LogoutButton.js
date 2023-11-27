@@ -10,6 +10,7 @@ const LogoutButton = () => {
   const logout = () => {
     authService.logout().then((res) => {
       if (res === "Logged out successfully") {
+        localStorage.clear();
         dispatch(sliceLogout());
         navigate("/");
       }
