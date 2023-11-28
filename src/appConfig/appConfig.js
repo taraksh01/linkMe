@@ -6,6 +6,7 @@ const appConfig = {
   appwritePostDbId: String(process.env.APPWRITE_POST_DB_ID),
   appwritePostCollectionId: String(process.env.APPWRITE_POST_COLLECTION_ID),
   appwritePostDataId: String(process.env.APPWRITE_POST_DATA_ID),
+  appwriteUserImage: String(process.env.APPWRITE_USER_IMAGE),
 };
 
 export default appConfig;
