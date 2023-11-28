@@ -11,7 +11,7 @@ const App = () => {
   useEffect(() => {
     const loggedInUser = localStorage.getItem("loggedInUser");
     if (loggedInUser) {
-      dispatch(sliceLogin(loggedInUser));
+      dispatch(sliceLogin(JSON.parse(loggedInUser)));
     }
   }, []);
 
