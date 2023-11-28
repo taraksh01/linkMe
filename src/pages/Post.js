@@ -10,7 +10,7 @@ const Post = () => {
     formState: { errors },
   } = useForm();
 
-  const userId = useSelector((state) => state.authSlice.user.$id);
+  const userId = useSelector((state) => state?.authSlice?.user?.$id);
 
   const submit = async (data) => {
     const response = await databaseService.createPost({ ...data, userId });
