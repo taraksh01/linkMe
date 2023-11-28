@@ -1,4 +1,4 @@
-import { Client, Databases, Query } from "appwrite";
+import { Client, Databases, ID, Query } from "appwrite";
 import appConfig from "../appConfig/appConfig";
 
 class UserService {
@@ -11,6 +11,28 @@ class UserService {
       .setProject(appConfig.appwriteProjectId);
 
     this.userDatabase = new Databases(this.client);
+  }
+
+  async createUser({ fullName, userName, email, userImage }) {
+    if (
+      (await this.isAvailable(`userName`, userName)) ==
+        "userName is available" &&
+      (await this.isAvailable(`email`, email)) === `email is available`
+    ) {
+      try {
+        const user = await this.userDatabase.createDocument(
+          appConfig.appwriteUserDbId,
+          appConfig.appwriteUserCollectionId,
+          ID.unique(),
+          { fullName, email, userImage, userName }
+        );
+        if (user) return user;
+      } catch (error) {
+        return error.message;
+      }
+    } else {
+      return "Unexpected Error While attempting to create account";
+    }
   }
 
   async isAvailable(key, value, queries = [Query.equal(`${key}`, value)]) {
