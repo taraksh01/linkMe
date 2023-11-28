@@ -9,7 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
   const navItems = [
     { name: "Home", url: "/", active: true },
-    { name: "Post", url: "/post", active: authStatus === "authorized" },
+    { name: "Add Post", url: "/post", active: authStatus === "authorized" },
     { name: "Login", url: "/login", active: authStatus !== "authorized" },
     {
       name: "Create Account",
