@@ -51,6 +51,21 @@ class UserService {
       return error.message;
     }
   }
+
+  async getUser({ userId }) {
+    try {
+      const user = await this.userDatabase.getDocument(
+        appConfig.appwriteUserDbId,
+        appConfig.appwriteUserCollectionId,
+        userId
+      );
+      if (user) {
+        return user;
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
 const userService = new UserService();
