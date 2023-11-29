@@ -41,6 +41,20 @@ class UserStorage {
       return error.message;
     }
   }
+
+  async deleteFile(fileId) {
+    try {
+      const response = await this.storage.deleteFile(
+        appConfig.appwriteUserImage,
+        fileId
+      );
+      if (response) {
+        return response;
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
 const userStorage = new UserStorage();
