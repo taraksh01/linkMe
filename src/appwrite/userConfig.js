@@ -84,6 +84,23 @@ class UserService {
       return error.message;
     }
   }
+
+  async deleteUser({ userId }) {
+    try {
+      const user = await this.userDatabase.deleteDocument(
+        appConfig.appwriteUserDbId,
+        appConfig.appwriteUserCollectionId,
+        userId
+      );
+      if (user) {
+        return user;
+      } else {
+        return "Unexpected Error occured While attempting to delete account";
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
 const userService = new UserService();
