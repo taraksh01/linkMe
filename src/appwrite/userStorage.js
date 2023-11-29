@@ -28,11 +28,11 @@ class UserStorage {
     }
   }
 
-  async getFile(fileid) {
+  async getFile(fileId) {
     try {
       const response = await this.storage.getFile(
         appConfig.appwriteUserImage,
-        fileid
+        fileId
       );
       if (response) {
         return response;
@@ -45,6 +45,20 @@ class UserStorage {
   async deleteFile(fileId) {
     try {
       const response = await this.storage.deleteFile(
+        appConfig.appwriteUserImage,
+        fileId
+      );
+      if (response) {
+        return response;
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
+
+  filePreview(fileId) {
+    try {
+      const response = this.storage.getFilePreview(
         appConfig.appwriteUserImage,
         fileId
       );
