@@ -69,6 +69,20 @@ class UserStorage {
       return error.message;
     }
   }
+
+  viewFile(fileId) {
+    try {
+      const response = this.storage.getFileView(
+        appConfig.appwriteUserImage,
+        fileId
+      );
+      if (response) {
+        return response;
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
 const userStorage = new UserStorage();
