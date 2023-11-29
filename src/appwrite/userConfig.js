@@ -66,6 +66,24 @@ class UserService {
       return error.message;
     }
   }
+
+  async updateUser({ userId, fullName, userName, email, userImage }) {
+    try {
+      const user = await this.userDatabase.updateDocument(
+        appConfig.appwriteUserDbId,
+        appConfig.appwriteUserCollectionId,
+        userId,
+        { fullName, userName, email, userImage }
+      );
+      if (user) {
+        return user;
+      } else {
+        return "Unexpected Error occured While attempting to update account";
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
 const userService = new UserService();
