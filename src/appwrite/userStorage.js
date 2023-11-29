@@ -83,6 +83,20 @@ class UserStorage {
       return error.message;
     }
   }
+
+  downloadFile(fileId) {
+    try {
+      const response = this.storage.getFileDownload(
+        appConfig.appwriteUserImage,
+        fileId
+      );
+      if (response) {
+        return response;
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
 const userStorage = new UserStorage();
