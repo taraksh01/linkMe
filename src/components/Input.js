@@ -12,6 +12,7 @@ const Input = forwardRef(
       color = "text-gray-700",
       className = "",
       error = "",
+      message = "",
       ...props
     },
     ref
@@ -21,9 +22,16 @@ const Input = forwardRef(
         {label && (
           <label className="block m-2  text-sm">
             {label}
-            {required && <span className="text-red-500">*</span>}
+            {required && <span className="text-red-500 px-1">*</span>}
             {error && (
-              <span className="text-red-500 p-1">This is a required field</span>
+              <span className="text-red-500 px-1">
+                This is a required field
+              </span>
+            )}
+            {message === "userName is available" ? (
+              <span className="text-green-500 block">{message}</span>
+            ) : (
+              <span className="text-red-500 block">{message}</span>
             )}
           </label>
         )}
