@@ -27,6 +27,20 @@ class UserStorage {
       return error.message;
     }
   }
+
+  async getFile(fileid) {
+    try {
+      const response = await this.storage.getFile(
+        appConfig.appwriteUserImage,
+        fileid
+      );
+      if (response) {
+        return response;
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
 const userStorage = new UserStorage();
