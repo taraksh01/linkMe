@@ -56,7 +56,7 @@ class UserStorage {
     }
   }
 
-  filePreview(fileId) {
+  previewFile(fileId) {
     try {
       const response = this.storage.getFilePreview(
         appConfig.appwriteUserImage,
