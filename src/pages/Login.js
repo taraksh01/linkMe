@@ -64,7 +64,7 @@ const Login = () => {
           type="email"
           placeholder="Enter your email"
           required={true}
-          error={errors.name}
+          error={errors.email}
           {...register("email", { required: true })}
         />
         <Input
@@ -72,7 +72,7 @@ const Login = () => {
           type="password"
           placeholder="Choose a strong password"
           required={true}
-          error={errors.name}
+          error={errors.password}
           {...register("password", { required: true })}
         />
         <Button type="submit" className="m-4 shadow-md">
