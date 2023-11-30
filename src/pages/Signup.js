@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import authService from "../appwrite/authConfig";
+import userService from "../appwrite/userConfig";
 import {
   login as sliceLogin,
   logout as sliceLogout,
@@ -17,6 +18,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [message, setMessage] = useState(null);
 
   const [registerError, setRegisterError] = useState(null);
   const navigate = useNavigate();
@@ -34,7 +36,7 @@ const Login = () => {
         dispatch(sliceLogout());
       }
     } catch (error) {
-      setRegisterError(sliceLogout());
+      dispatch(sliceLogout());
     }
   };
 
@@ -59,19 +61,35 @@ const Login = () => {
         className="flex flex-col justify-center items-center w-full mx-auto"
       >
         <Input
-          label="Name"
+          label="Full Name"
           type="text"
-          placeholder="Enter your name"
+          placeholder="Enter your full name"
           required={true}
-          error={errors.name}
-          {...register("name", { required: true })}
+          error={errors.fullName}
+          {...register("fullName", { required: true })}
+        />
+        <Input
+          label="Username"
+          type="text"
+          placeholder="Choose a username"
+          required={true}
+          error={errors.userName}
+          message={message}
+          {...register("userName", {
+            required: true,
+            onChange: async (e) => {
+              setMessage(
+                await userService.isAvailable("userName", e.target.value)
+              );
+            },
+          })}
         />
         <Input
           label="Email"
           type="email"
           placeholder="Enter your email"
           required={true}
-          error={errors.name}
+          error={errors.email}
           {...register("email", { required: true })}
         />
         <Input
@@ -79,7 +97,7 @@ const Login = () => {
           type="password"
           placeholder="Choose a strong password"
           required={true}
-          error={errors.name}
+          error={errors.password}
           {...register("password", { required: true })}
         />
         <Button type="submit" className="m-4 shadow-md">
