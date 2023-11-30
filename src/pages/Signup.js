@@ -12,7 +12,7 @@ import {
   logout as sliceLogout,
 } from "../store/features/authSlice";
 
-const Login = () => {
+const Signup = () => {
   const {
     register,
     handleSubmit,
@@ -108,4 +108,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
