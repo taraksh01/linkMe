@@ -13,13 +13,13 @@ class AuthorizationService {
     this.account = new Account(this.client);
   }
 
-  async createAccount({ email, password, name }) {
+  async createAccount({ fullName, email, password }) {
     try {
       const newUser = await this.account.create(
         ID.unique(),
         email,
         password,
-        name
+        fullName
       );
       if (newUser) {
         this.login({ email, password });
