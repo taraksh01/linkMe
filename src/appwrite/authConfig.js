@@ -22,7 +22,7 @@ class AuthorizationService {
         fullName
       );
       if (newUser) {
-        this.login({ email, password });
+        await this.login({ email, password });
         return `Account created successfully`;
       }
     } catch (error) {
