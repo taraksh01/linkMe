@@ -87,7 +87,9 @@ const Signup = () => {
             required: true,
             onChange: async (e) => {
               setMessage(
-                await userService.isAvailable("userName", e.target.value)
+                e.target.value === ""
+                  ? "username can not be empty"
+                  : await userService.isAvailable("userName", e.target.value)
               );
             },
           })}
