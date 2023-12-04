@@ -11,6 +11,7 @@ import {
   login as sliceLogin,
   logout as sliceLogout,
 } from "../store/features/authSlice";
+import avatarService from "../appwrite/avatarConfig";
 
 const Signup = () => {
   const {
@@ -31,6 +32,12 @@ const Signup = () => {
         const currentUser = await authService.currentUser();
         dispatch(sliceLogin(currentUser));
         localStorage.setItem("loggedInUser", JSON.stringify(currentUser));
+        const userImage = avatarService.getUserInitial(currentUser.name).href;
+        await userService.createUser({
+          userId: currentUser.$id,
+          ...data,
+          userImage,
+        });
         navigate("/");
       } else {
         setRegisterError(res);
