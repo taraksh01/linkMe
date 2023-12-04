@@ -13,7 +13,7 @@ class UserService {
     this.userDatabase = new Databases(this.client);
   }
 
-  async createUser({ fullName, userName, email, userImage }) {
+  async createUser({ userId, fullName, userName, email, userImage }) {
     if (
       (await this.isAvailable(`userName`, userName)) ==
         "userName is available" &&
@@ -23,7 +23,7 @@ class UserService {
         const user = await this.userDatabase.createDocument(
           appConfig.appwriteUserDbId,
           appConfig.appwriteUserCollectionId,
-          ID.unique(),
+          userId,
           { fullName, email, userImage, userName }
         );
         if (user) return user;
