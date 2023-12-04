@@ -28,9 +28,10 @@ const Signup = () => {
     try {
       const res = await authService.createAccount(data);
       if (res === "Account created successfully") {
-        navigate("/");
         const currentUser = await authService.currentUser();
         dispatch(sliceLogin(currentUser));
+        localStorage.setItem("loggedInUser", JSON.stringify(currentUser));
+        navigate("/");
       } else {
         setRegisterError(res);
         dispatch(sliceLogout());
