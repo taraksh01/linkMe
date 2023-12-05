@@ -67,6 +67,21 @@ class UserService {
     }
   }
 
+  async getByUserName({ userName }) {
+    try {
+      const user = await this.userDatabase.listDocuments(
+        appConfig.appwriteUserDbId,
+        appConfig.appwriteUserCollectionId,
+        [Query.equal("userName", userName)]
+      );
+      if (user) {
+        return user;
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
+
   async updateUser({ userId, fullName, userName, email, userImage }) {
     try {
       const user = await this.userDatabase.updateDocument(
