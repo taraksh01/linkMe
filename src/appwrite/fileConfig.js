@@ -1,7 +1,7 @@
 import appConfig from "../appConfig/appConfig";
 import { Client, ID, Storage } from "appwrite";
 
-class UserStorage {
+class FileService {
   client = new Client();
   storage;
 
@@ -99,6 +99,6 @@ class UserStorage {
   }
 }
 
-const userStorage = new UserStorage();
+const fileService = new FileService();
 
-export default userStorage;
+export default fileService;
