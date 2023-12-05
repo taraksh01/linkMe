@@ -13,7 +13,7 @@ class UserService {
     this.userDatabase = new Databases(this.client);
   }
 
-  async createUser({ userId, fullName, userName, email, userImage }) {
+  async createUser({ userId, fullName, userName, email, profilePic }) {
     if (
       (await this.isAvailable(`userName`, userName)) ==
         "userName is available" &&
@@ -24,7 +24,7 @@ class UserService {
           appConfig.appwriteUserDbId,
           appConfig.appwriteUserCollectionId,
           userId,
-          { fullName, email, userImage, userName }
+          { fullName, email, profilePic, userName }
         );
         if (user) return user;
       } catch (error) {
@@ -82,13 +82,13 @@ class UserService {
     }
   }
 
-  async updateUser({ userId, fullName, userName, email, userImage }) {
+  async updateUser({ userId, fullName, userName, email, profilePic }) {
     try {
       const user = await this.userDatabase.updateDocument(
         appConfig.appwriteUserDbId,
         appConfig.appwriteUserCollectionId,
         userId,
-        { fullName, userName, email, userImage }
+        { fullName, userName, email, profilePic }
       );
       if (user) {
         return user;
