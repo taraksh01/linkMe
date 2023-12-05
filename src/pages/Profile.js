@@ -20,7 +20,7 @@ const Profile = () => {
   return (
     <Link
       className="flex items-center gap-2 px-1 rounded-lg sm:bg-slate-200"
-      to={`user/${userDetails.userName}`}
+      to={`/${userDetails.userName}`}
     >
       <div className="flex flex-col justify-evenly max-sm:hidden">
         <h1 className="text-lg font-medium capitalize">
