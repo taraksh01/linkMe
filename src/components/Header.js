@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Logo from "./Logo";
-import LogoutButton from "./LogoutButton";
+import Profile from "../pages/Profile";
 
 const Header = () => {
   const authStatus = useSelector((state) => state.authSlice.status);
@@ -23,7 +23,7 @@ const Header = () => {
       <Link to={"/"}>
         <Logo>LinkMe</Logo>
       </Link>
-      <div className="flex">
+      <div className="flex items-center">
         <div className="">
           {navItems?.map(
             (item) =>
@@ -34,7 +34,7 @@ const Header = () => {
               )
           )}
         </div>
-        {authStatus === "authorized" && <LogoutButton />}
+        {authStatus === "authorized" && <Profile />}
       </div>
     </header>
   );
