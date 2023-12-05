@@ -32,11 +32,11 @@ const Signup = () => {
         const currentUser = await authService.currentUser();
         dispatch(sliceLogin(currentUser));
         localStorage.setItem("loggedInUser", JSON.stringify(currentUser));
-        const userImage = avatarService.getUserInitial(currentUser.name).href;
+        const profilePic = avatarService.getUserInitial(currentUser.name).href;
         await userService.createUser({
           userId: currentUser.$id,
           ...data,
-          userImage,
+          profilePic,
         });
         navigate("/");
       } else {
