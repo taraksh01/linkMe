@@ -2,12 +2,11 @@ import { useSelector } from "react-redux";
 import userService from "../appwrite/userConfig";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import appConfig from "../appConfig/appConfig";
 
 const Profile = () => {
-  const [userDetails, setUserDetails] = useState({
-    fullName: "Full Name",
-    userName: "username",
-  });
+  const [userDetails, setUserDetails] = useState({});
+  const [profilePic, setProfilePic] = useState(null);
   const user = useSelector((state) => state?.authSlice?.user);
   useEffect(() => {
     fetchUserDetails();
@@ -16,6 +15,18 @@ const Profile = () => {
   const fetchUserDetails = async () => {
     setUserDetails(await userService.getUser({ userId: user?.$id }));
   };
+
+  useEffect(() => {
+    if (userDetails?.profilePic?.startsWith("http")) {
+      setProfilePic(new URL(userDetails?.profilePic));
+    } else {
+      setProfilePic(
+        new URL(
+          `https://cloud.appwrite.io/v1/storage/buckets/${appConfig.appwriteProfilePic}/files/${userDetails?.profilePic}/view?project=${appConfig.appwriteProjectId}`
+        )
+      );
+    }
+  }, [userDetails]);
 
   return (
     <Link
@@ -29,7 +40,7 @@ const Profile = () => {
         <h2 className="lowercase">{userDetails.userName}</h2>
       </div>
       <img
-        src={userDetails?.profilePic}
+        src={profilePic}
         alt={userDetails?.userName}
         className="bg-black rounded-full border border-black w-12 h-12"
       />
