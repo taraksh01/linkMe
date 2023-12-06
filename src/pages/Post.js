@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import Button from "../components/Button";
-import databaseService from "../appwrite/postConfig";
+import postService from "../appwrite/postConfig";
 import { useSelector } from "react-redux";
 
 const Post = () => {
@@ -13,7 +13,7 @@ const Post = () => {
   const userId = useSelector((state) => state?.authSlice?.user?.$id);
 
   const submit = async (data) => {
-    const response = await databaseService.createPost({ ...data, userId });
+    const response = await postService.createPost({ ...data, userId });
   };
 
   return (
