@@ -1,7 +1,7 @@
 import appconfig from "../appConfig/appConfig";
 import { Client, Databases, ID, Query, Storage } from "appwrite";
 
-class DatabaseService {
+class PostService {
   client = new Client();
   database;
   storage;
@@ -93,6 +93,6 @@ class DatabaseService {
   }
 }
 
-const databaseService = new DatabaseService();
+const postService = new PostService();
 
-export default databaseService;
+export default postService;
