@@ -5,8 +5,8 @@ const appConfig = {
   appwriteUserCollectionId: String(process.env.APPWRITE_USER_COLLECTION_ID),
   appwritePostDbId: String(process.env.APPWRITE_POST_DB_ID),
   appwritePostCollectionId: String(process.env.APPWRITE_POST_COLLECTION_ID),
-  appwritePostDataId: String(process.env.APPWRITE_POST_DATA_ID),
-  appwriteUserImage: String(process.env.APPWRITE_USER_IMAGE),
+  appwritePostData: String(process.env.APPWRITE_POST_DATA),
+  appwriteProfilePic: String(process.env.APPWRITE_PROFILE_PIC),
 };
 
 export default appConfig;
