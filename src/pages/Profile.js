@@ -29,7 +29,7 @@ const Profile = () => {
         <h2 className="lowercase">{userDetails.userName}</h2>
       </div>
       <img
-        src={userDetails?.userImage}
+        src={userDetails?.profilePic}
         alt={userDetails?.userName}
         className="bg-black rounded-full border border-black w-12 h-12"
       />
