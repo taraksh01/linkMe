@@ -8,6 +8,7 @@ import Signup from "./src/pages/Signup";
 import Home from "./src/pages/Home";
 import NewPost from "./src/pages/NewPost";
 import UserProfile from "./src/pages/UserProfile";
+import Post from "./src/pages/Post";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: "/register", element: <Signup /> },
       { path: "/newpost", element: <NewPost /> },
       { path: "/:username", element: <UserProfile /> },
+      { path: "post/:postId", element: <Post /> },
     ],
   },
 ]);
