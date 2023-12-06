@@ -1,0 +1,81 @@
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Query } from "appwrite";
+import userService from "../appwrite/userConfig";
+import postService from "../appwrite/postConfig";
+import PostCard from "../pages/PostCard";
+// import fileService from "../appwrite/fileConfig";
+
+const UserProfile = () => {
+  const { username } = useParams();
+  const [validUser, setValidUser] = useState(null);
+  const [userDetails, setUserDetails] = useState(null);
+  const [userPosts, setUserPosts] = useState(null);
+  const loggedInUser = useSelector((state) => state.authSlice.user);
+
+  useEffect(() => {
+    userService
+      .getByUserName({ userName: username })
+      .then((res) => setUserDetails(res.documents[0]));
+  }, []);
+
+  useEffect(() => {
+    postService
+      .getAllPosts([Query.equal("userId", `${userDetails?.$id}`)])
+      .then((res) => setUserPosts(res.documents));
+
+    userService
+      .isAvailable("userName", username)
+      .then((res) => setValidUser(res));
+  }, [userDetails]);
+
+  // previewProfile = async () => {
+  //   const file = await fileService.createFile(
+  //     document.getElementById("profilepic").files[0]
+  //   );
+  //   console.log(file);
+  // };
+  console.log(validUser);
+
+  return validUser == `userName is already taken` ? (
+    <div className="max-w-2xl mx-auto m-2 p-2 flex flex-col">
+      <div className="w-full">
+        <img
+          src={userDetails?.profilePic || userDetails?.userImage}
+          className="h-40 w-40 rounded-full border-red-600 mx-auto"
+          alt="profile pic"
+        />
+      </div>
+      <hr className="border-t-2 my-4"></hr>
+      <p className="text-3xl">
+        {userDetails?.fullName}
+        <span className="text-xl px-2">({userDetails?.userName})</span>
+      </p>
+      <div className="my-4">
+        <h2 className="text-2xl">Posts</h2>
+        <div className="flex flex-wrap mx-auto my-2 max-w-2xl justify-center">
+          {userPosts?.length > 0 ? (
+            userPosts?.map((post) => (
+              <Link
+                to={`/post/${post.$id}`}
+                key={post.$id}
+                className="border w-full"
+              >
+                <PostCard>{post}</PostCard>
+              </Link>
+            ))
+          ) : (
+            <h2 className="text-2xl font-medium">No posts yet</h2>
+          )}
+        </div>
+      </div>
+    </div>
+  ) : (
+    <h1 className="max-w-2xl mx-auto m-2 p-2 text-5xl text-center">
+      User not found
+    </h1>
+  );
+};
+
+export default UserProfile;
