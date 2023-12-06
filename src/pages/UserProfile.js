@@ -5,13 +5,14 @@ import { Query } from "appwrite";
 import userService from "../appwrite/userConfig";
 import postService from "../appwrite/postConfig";
 import PostCard from "../pages/PostCard";
-// import fileService from "../appwrite/fileConfig";
+import fileService from "../appwrite/fileConfig";
 
 const UserProfile = () => {
   const { username } = useParams();
   const [validUser, setValidUser] = useState(null);
   const [userDetails, setUserDetails] = useState(null);
   const [userPosts, setUserPosts] = useState(null);
+  const [profilePic, setProfilePic] = useState(null);
   const loggedInUser = useSelector((state) => state.authSlice.user);
 
   useEffect(() => {
@@ -28,6 +29,10 @@ const UserProfile = () => {
     postService
       .getAllPosts([Query.equal("userId", `${userDetails?.$id}`)])
       .then((res) => setUserPosts(res.documents));
+
+    userDetails?.profilePic.startsWith("http")
+      ? setProfilePic(new URL(userDetails?.profilePic))
+      : setProfilePic(fileService.previewFile(userDetails?.profilePic));
   }, [userDetails]);
 
   // previewProfile = async () => {
@@ -41,7 +46,7 @@ const UserProfile = () => {
     <div className="max-w-2xl mx-auto m-2 p-2 flex flex-col">
       <div className="w-full">
         <img
-          src={userDetails?.profilePic || userDetails?.userImage}
+          src={profilePic}
           className="h-40 w-40 rounded-full border-red-600 mx-auto"
           alt="profile pic"
         />
