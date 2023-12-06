@@ -6,6 +6,7 @@ import userService from "../appwrite/userConfig";
 import postService from "../appwrite/postConfig";
 import PostCard from "../pages/PostCard";
 import fileService from "../appwrite/fileConfig";
+import Button from "../components/Button";
 
 const UserProfile = () => {
   const { username } = useParams();
@@ -52,10 +53,17 @@ const UserProfile = () => {
         />
       </div>
       <hr className="border-t-2 my-4"></hr>
-      <p className="text-3xl">
-        {userDetails?.fullName}
-        <span className="text-xl px-2">({userDetails?.userName})</span>
-      </p>
+      <div className="flex justify-between">
+        <p className="text-3xl">
+          {userDetails?.fullName}
+          <span className="text-xl px-2">({userDetails?.userName})</span>
+        </p>
+        {loggedInUser?.$id === userDetails?.$id && (
+          <Link to={"/account/setting"}>
+            <Button>Account settings</Button>
+          </Link>
+        )}
+      </div>
       <div className="my-4">
         <h2 className="text-2xl font-medium">Posts</h2>
         <div className="flex flex-wrap mx-auto my-2 max-w-2xl justify-center">
