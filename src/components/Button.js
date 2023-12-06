@@ -1,7 +1,7 @@
 const Button = ({
   children,
   type = "button",
-  bgColor = "bg-green-600",
+  bgColor = "bg-purple-700",
   color = "text-white",
   className = "",
   ...props
