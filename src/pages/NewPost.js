@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import postService from "../appwrite/postConfig";
 import { useSelector } from "react-redux";
 
-const Post = () => {
+const NewPost = () => {
   const {
     register,
     handleSubmit,
@@ -35,4 +35,4 @@ const Post = () => {
     </form>
   );
 };
-export default Post;
+export default NewPost;
