@@ -16,7 +16,7 @@ class FileService {
   async createFile(file) {
     try {
       const response = await this.storage.createFile(
-        appConfig.appwriteUserImage,
+        appConfig.appwriteProfilePic,
         ID.unique(),
         file
       );
@@ -31,7 +31,7 @@ class FileService {
   async getFile(fileId) {
     try {
       const response = await this.storage.getFile(
-        appConfig.appwriteUserImage,
+        appConfig.appwriteProfilePic,
         fileId
       );
       if (response) {
@@ -45,7 +45,7 @@ class FileService {
   async deleteFile(fileId) {
     try {
       const response = await this.storage.deleteFile(
-        appConfig.appwriteUserImage,
+        appConfig.appwriteProfilePic,
         fileId
       );
       if (response) {
@@ -59,7 +59,7 @@ class FileService {
   previewFile(fileId) {
     try {
       const response = this.storage.getFilePreview(
-        appConfig.appwriteUserImage,
+        appConfig.appwriteProfilePic,
         fileId
       );
       if (response) {
@@ -73,7 +73,7 @@ class FileService {
   viewFile(fileId) {
     try {
       const response = this.storage.getFileView(
-        appConfig.appwriteUserImage,
+        appConfig.appwriteProfilePic,
         fileId
       );
       if (response) {
@@ -87,7 +87,7 @@ class FileService {
   downloadFile(fileId) {
     try {
       const response = this.storage.getFileDownload(
-        appConfig.appwriteUserImage,
+        appConfig.appwriteProfilePic,
         fileId
       );
       if (response) {
