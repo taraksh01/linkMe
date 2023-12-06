@@ -18,16 +18,16 @@ const UserProfile = () => {
     userService
       .getByUserName({ userName: username })
       .then((res) => setUserDetails(res.documents[0]));
-  }, []);
+
+    userService
+      .isAvailable("userName", username)
+      .then((res) => setValidUser(res));
+  }, [username]);
 
   useEffect(() => {
     postService
       .getAllPosts([Query.equal("userId", `${userDetails?.$id}`)])
       .then((res) => setUserPosts(res.documents));
-
-    userService
-      .isAvailable("userName", username)
-      .then((res) => setValidUser(res));
   }, [userDetails]);
 
   // previewProfile = async () => {
@@ -36,7 +36,6 @@ const UserProfile = () => {
   //   );
   //   console.log(file);
   // };
-  console.log(validUser);
 
   return validUser == `userName is already taken` ? (
     <div className="max-w-2xl mx-auto m-2 p-2 flex flex-col">
@@ -53,7 +52,7 @@ const UserProfile = () => {
         <span className="text-xl px-2">({userDetails?.userName})</span>
       </p>
       <div className="my-4">
-        <h2 className="text-2xl">Posts</h2>
+        <h2 className="text-2xl font-medium">Posts</h2>
         <div className="flex flex-wrap mx-auto my-2 max-w-2xl justify-center">
           {userPosts?.length > 0 ? (
             userPosts?.map((post) => (
