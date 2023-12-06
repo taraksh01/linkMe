@@ -9,6 +9,7 @@ import Home from "./src/pages/Home";
 import NewPost from "./src/pages/NewPost";
 import UserProfile from "./src/pages/UserProfile";
 import Post from "./src/pages/Post";
+import AccountSettings from "./src/pages/AccountSettings";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: "/newpost", element: <NewPost /> },
       { path: "/:username", element: <UserProfile /> },
       { path: "post/:postId", element: <Post /> },
+      { path: "/account/setting", element: <AccountSettings /> },
     ],
   },
 ]);
