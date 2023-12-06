@@ -1,5 +1,5 @@
 import appconfig from "../appConfig/appConfig";
-import { Client, Databases, ID, Storage } from "appwrite";
+import { Client, Databases, ID, Query, Storage } from "appwrite";
 
 class DatabaseService {
   client = new Client();
@@ -31,11 +31,12 @@ class DatabaseService {
     }
   }
 
-  async getAllPosts() {
+  async getAllPosts(query = []) {
     try {
       const allPosts = await this.database.listDocuments(
         appconfig.appwritePostDbId,
-        appconfig.appwritePostCollectionId
+        appconfig.appwritePostCollectionId,
+        query
       );
       if (allPosts) {
         return allPosts;
