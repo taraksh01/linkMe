@@ -31,7 +31,7 @@ const UserProfile = () => {
       .getAllPosts([Query.equal("userId", `${userDetails?.$id}`)])
       .then((res) => setUserPosts(res.documents));
 
-    userDetails?.profilePic.startsWith("http")
+    userDetails?.profilePic?.startsWith("http")
       ? setProfilePic(new URL(userDetails?.profilePic))
       : setProfilePic(fileService.previewFile(userDetails?.profilePic));
   }, [userDetails]);
