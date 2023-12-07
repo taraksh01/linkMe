@@ -14,9 +14,9 @@ const Home = () => {
   return authStatus === "authorized" ? (
     <div className="flex flex-wrap mx-auto my-2 max-w-2xl justify-center">
       {allPosts?.documents?.map((post) => (
-        <Link to={`/post/${post.$id}`} key={post.$id} className="border w-full">
-          <PostCard>{post}</PostCard>
-        </Link>
+        <div key={post.$id} className="border w-full">
+          <PostCard data={post} />
+        </div>
       ))}
     </div>
   ) : (
