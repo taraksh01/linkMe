@@ -74,7 +74,7 @@ const UserProfile = () => {
                 key={post.$id}
                 className="border w-full"
               >
-                <PostCard>{post}</PostCard>
+                <PostCard data={post} />
               </Link>
             ))
           ) : (
