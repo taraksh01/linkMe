@@ -62,6 +62,17 @@ class AuthorizationService {
       return error.message;
     }
   }
+
+  async blockAccount() {
+    try {
+      const user = await this.account.updateStatus();
+      if (user) {
+        return `Account deleted successfully`;
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
 
 const authService = new AuthorizationService();
