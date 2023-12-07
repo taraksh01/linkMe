@@ -18,9 +18,9 @@ const Input = forwardRef(
     ref
   ) => {
     return (
-      <div className="mx-auto text-gray-700">
+      <div className="mx-auto w-full text-gray-700">
         {label && (
-          <label className="block m-2  text-sm">
+          <label className="block m-2 text-sm">
             {label}
             {required && <span className="text-red-500 px-1">*</span>}
             {error && (
@@ -38,7 +38,7 @@ const Input = forwardRef(
         <input
           type={type}
           placeholder={placeholder}
-          className={`${className} ${bgColor} ${color} py-1.5 px-4 rounded-full border border-gray-300 shadow-md outline-none mb-2`}
+          className={`${className} ${bgColor} ${color} py-1.5 px-4 rounded-full border border-gray-300 shadow-md outline-none mb-2 w-full`}
           ref={ref}
           {...props}
         />
