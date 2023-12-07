@@ -30,6 +30,7 @@ const Login = () => {
         dispatch(sliceLogin(user));
         localStorage.setItem("loggedInUser", JSON.stringify(user));
         navigate("/");
+        window.location.reload();
       } else {
         setLoginError(res);
         dispatch(sliceLogout());

@@ -39,6 +39,7 @@ const Signup = () => {
           profilePic,
         });
         navigate("/");
+        window.location.reload();
       } else {
         setRegisterError(res);
         dispatch(sliceLogout());
