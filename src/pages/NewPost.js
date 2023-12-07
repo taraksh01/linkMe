@@ -11,7 +11,7 @@ const NewPost = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [error, serError] = useState("This is a sample error for test");
+  const [error, serError] = useState("");
   const userId = useSelector((state) => state?.authSlice?.user?.$id);
   const navigate = useNavigate();
 
