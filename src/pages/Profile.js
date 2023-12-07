@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import userService from "../appwrite/userConfig";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import appConfig from "../appConfig/appConfig";
+import fileService from "../appwrite/fileConfig";
 
 const Profile = () => {
   const [userDetails, setUserDetails] = useState({});
@@ -17,15 +17,9 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    if (userDetails?.profilePic?.startsWith("http")) {
-      setProfilePic(new URL(userDetails?.profilePic));
-    } else {
-      setProfilePic(
-        new URL(
-          `https://cloud.appwrite.io/v1/storage/buckets/${appConfig.appwriteProfilePic}/files/${userDetails?.profilePic}/view?project=${appConfig.appwriteProjectId}`
-        )
-      );
-    }
+    userDetails?.profilePic?.startsWith("http")
+      ? setProfilePic(new URL(userDetails?.profilePic))
+      : setProfilePic(fileService.viewFile(userDetails?.profilePic));
   }, [userDetails]);
 
   return (
