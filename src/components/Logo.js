@@ -4,11 +4,12 @@ const Logo = ({
   bgColor = "bg-transparent",
   color = "text-orange-400",
   className = "",
-  ...porps
+  ...props
 }) => {
   return (
     <div
-      className={`${bgColor} ${color} text-2xl font-medium inline-block px-2 py-1 m-1`}
+      className={`${bgColor} ${color} text-3xl font-bold inline-block px-2 py-1`}
+      {...props}
     >
       {children}
     </div>
