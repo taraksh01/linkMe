@@ -69,13 +69,9 @@ const UserProfile = () => {
         <div className="flex flex-wrap mx-auto my-2 max-w-2xl justify-center">
           {userPosts?.length > 0 ? (
             userPosts?.map((post) => (
-              <Link
-                to={`/post/${post.$id}`}
-                key={post.$id}
-                className="border w-full"
-              >
+              <div key={post.$id} className="border w-full">
                 <PostCard data={post} />
-              </Link>
+              </div>
             ))
           ) : (
             <h2 className="text-2xl font-medium">No posts yet</h2>
