@@ -23,8 +23,8 @@ const Header = () => {
       <Link to={"/"}>
         <Logo>LinkMe</Logo>
       </Link>
-      <div className="flex items-center">
-        <div className="">
+      <div className="flex items-center gap-2">
+        <div className="flex gap-2">
           {navItems?.map(
             (item) =>
               item.active && (
