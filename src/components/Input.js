@@ -38,7 +38,7 @@ const Input = forwardRef(
         <input
           type={type}
           placeholder={placeholder}
-          className={`${className} ${bgColor} ${color} py-1.5 px-4 rounded-full border border-gray-300 shadow-md outline-none mb-2 w-full`}
+          className={`${className} ${bgColor} ${color} py-1.5 px-4 rounded-full border border-gray-300 shadow-md outline-none my-2 w-full`}
           ref={ref}
           {...props}
         />
