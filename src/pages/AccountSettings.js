@@ -49,7 +49,7 @@ const AccountSettings = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="w-full flex my-2">
+      <div className="w-full flex my-2 overflow-y-auto">
         <Link className="w-full">
           <Button
             className={`${
