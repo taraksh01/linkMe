@@ -8,7 +8,7 @@ const Header = () => {
   const authStatus = useSelector((state) => state.authSlice.status);
   const navigate = useNavigate();
   const navItems = [
-    { name: "Home", url: "/", active: true },
+    { name: "Home", url: "/", active: authStatus === "authorized" },
     { name: "New Post", url: "/newpost", active: authStatus === "authorized" },
     { name: "Login", url: "/login", active: authStatus !== "authorized" },
     {
@@ -23,8 +23,8 @@ const Header = () => {
       <Link to={"/"}>
         <Logo>LinkMe</Logo>
       </Link>
-      <div className="flex items-center gap-2">
-        <div className="flex gap-2">
+      <div className="flex items-center gap-1">
+        <div className="flex gap-1">
           {navItems?.map(
             (item) =>
               item.active && (
