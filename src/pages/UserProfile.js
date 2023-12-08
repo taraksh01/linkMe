@@ -44,7 +44,7 @@ const UserProfile = () => {
   // };
 
   return validUser == `userName is already taken` ? (
-    <div className="max-w-2xl mx-auto m-2 p-2 flex flex-col">
+    <div className="max-w-2xl sm:mx-auto mx-1 flex flex-col">
       <div className="w-full">
         <img
           src={profilePic}
@@ -54,10 +54,10 @@ const UserProfile = () => {
       </div>
       <hr className="border-t-2 my-4"></hr>
       <div className="flex justify-between">
-        <p className="text-3xl">
-          {userDetails?.fullName}
-          <span className="text-xl px-2">({userDetails?.userName})</span>
-        </p>
+        <div className="flex flex-col">
+          <p className="text-3xl">{userDetails?.fullName}</p>
+          <span className="text-xl">({userDetails?.userName})</span>
+        </div>
         {loggedInUser?.$id === userDetails?.$id && (
           <Link to={"/account/setting"}>
             <Button>Account settings</Button>
@@ -66,10 +66,10 @@ const UserProfile = () => {
       </div>
       <div className="my-4">
         <h2 className="text-2xl font-medium">Posts</h2>
-        <div className="flex flex-wrap mx-auto my-2 max-w-2xl justify-center">
+        <div className="flex flex-wrap gap-1 mx-auto my-2 max-w-2xl justify-center">
           {userPosts?.length > 0 ? (
             userPosts?.map((post) => (
-              <div key={post.$id} className="border w-full">
+              <div key={post.$id} className="w-full">
                 <PostCard data={post} />
               </div>
             ))
