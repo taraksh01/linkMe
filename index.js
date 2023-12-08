@@ -6,11 +6,13 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./src/pages/Login";
 import Signup from "./src/pages/Signup";
 import Home from "./src/pages/Home";
-import NewPost from "./src/pages/NewPost";
-import UserProfile from "./src/pages/UserProfile";
-import Post from "./src/pages/Post";
-import AccountSettings from "./src/pages/AccountSettings";
 import Authenticate from "./src/components/Authenticate";
+import { Suspense, lazy } from "react";
+
+const UserProfile = lazy(() => import("./src/pages/UserProfile"));
+const Post = lazy(() => import("./src/pages/Post"));
+const AccountSettings = lazy(() => import("./src/pages/AccountSettings"));
+const NewPost = lazy(() => import("./src/pages/NewPost"));
 
 const router = createBrowserRouter([
   {
@@ -44,33 +46,41 @@ const router = createBrowserRouter([
       {
         path: "/newpost",
         element: (
-          <Authenticate>
-            <NewPost />
-          </Authenticate>
+          <Suspense>
+            <Authenticate>
+              <NewPost />
+            </Authenticate>
+          </Suspense>
         ),
       },
       {
         path: "/:username",
         element: (
-          <Authenticate>
-            <UserProfile />
-          </Authenticate>
+          <Suspense>
+            <Authenticate>
+              <UserProfile />
+            </Authenticate>
+          </Suspense>
         ),
       },
       {
         path: "post/:postId",
         element: (
-          <Authenticate>
-            <Post />
-          </Authenticate>
+          <Suspense>
+            <Authenticate>
+              <Post />
+            </Authenticate>
+          </Suspense>
         ),
       },
       {
         path: "/account/setting",
         element: (
-          <Authenticate authorized>
-            <AccountSettings />
-          </Authenticate>
+          <Suspense>
+            <Authenticate>
+              <AccountSettings />
+            </Authenticate>
+          </Suspense>
         ),
       },
     ],
