@@ -10,19 +10,69 @@ import NewPost from "./src/pages/NewPost";
 import UserProfile from "./src/pages/UserProfile";
 import Post from "./src/pages/Post";
 import AccountSettings from "./src/pages/AccountSettings";
+import Authenticate from "./src/components/Authenticate";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { path: "/", element: <Home /> },
-      { path: "/login", element: <Login /> },
-      { path: "/register", element: <Signup /> },
-      { path: "/newpost", element: <NewPost /> },
-      { path: "/:username", element: <UserProfile /> },
-      { path: "post/:postId", element: <Post /> },
-      { path: "/account/setting", element: <AccountSettings /> },
+      {
+        path: "/",
+        element: (
+          <Authenticate>
+            <Home />
+          </Authenticate>
+        ),
+      },
+      {
+        path: "/login",
+        element: (
+          <Authenticate>
+            <Login />
+          </Authenticate>
+        ),
+      },
+      {
+        path: "/register",
+        element: (
+          <Authenticate>
+            <Signup />
+          </Authenticate>
+        ),
+      },
+      {
+        path: "/newpost",
+        element: (
+          <Authenticate>
+            <NewPost />
+          </Authenticate>
+        ),
+      },
+      {
+        path: "/:username",
+        element: (
+          <Authenticate>
+            <UserProfile />
+          </Authenticate>
+        ),
+      },
+      {
+        path: "post/:postId",
+        element: (
+          <Authenticate>
+            <Post />
+          </Authenticate>
+        ),
+      },
+      {
+        path: "/account/setting",
+        element: (
+          <Authenticate authorized>
+            <AccountSettings />
+          </Authenticate>
+        ),
+      },
     ],
   },
 ]);
