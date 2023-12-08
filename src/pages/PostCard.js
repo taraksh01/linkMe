@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import userService from "../appwrite/userConfig";
 import fileService from "../appwrite/fileConfig";
-import postService from "../appwrite/postConfig";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import Like from "../components/Like";
+import Button from "../components/Button";
 
 const Post = ({ data }) => {
-  const { $createdAt, $id, $permissions, $updatedAt, post, userId } = data;
+  const { $createdAt, $id, $permissions, $updatedAt, post, userId, likes } =
+    data;
   const [userDetails, setUserDetails] = useState(null);
   const loggedInUser = useSelector((state) => state?.authSlice?.user);
   const [profilePic, setProfilePic] = useState(null);
@@ -16,7 +18,7 @@ const Post = ({ data }) => {
   useEffect(() => {
     userService.getUser({ userId }).then((res) => setUserDetails(res));
     const date = new Date();
-    const updated = new Date($updatedAt);
+    const updated = new Date($createdAt);
     const sec = Math.floor((date - updated) / 1000);
     const min = Math.floor(sec / 60);
     const hour = Math.floor(min / 60);
@@ -49,14 +51,14 @@ const Post = ({ data }) => {
 
   return (
     userDetails && (
-      <div className="m-1 rounded-lg bg-gray-100 px-2 w-full mx-auto">
-        <div className="flex">
+      <div className="rounded-lg bg-gray-100 w-full mx-auto">
+        <div className="flex m-1">
           <Link to={`/${userDetails?.userName}`} className="flex">
             <img src={profilePic} className="rounded-full h-12 w-12" />
             <div className="flex flex-col ml-2 justify-center">
               <div className="text-xl font-medium">
                 {userDetails?.fullName}
-                <span className="pl-1">({userDetails?.userName})</span>
+                {/* <span className="pl-1">({userDetails?.userName})</span> */}
               </div>
               <div className="text-sm">{postedAt}</div>
             </div>
@@ -66,8 +68,21 @@ const Post = ({ data }) => {
           )}
         </div>
 
-        <div className="text-2xl text-justify py-2">
+        <div className="text-2xl text-justify p-2">
           <Link to={`/post/${$id}`}>{post}</Link>
+        </div>
+        <div className="flex w-full">
+          <div className="w-1/2 flex justify-center items-center bg-purple-100 rounded-bl-lg">
+            <Like post={post} postId={$id} likes={likes} />
+          </div>
+          <div className="w-1/2 text-center text-xl">
+            <Button
+              disabled
+              bgColor="bg-gray-300 hover:opacity-100 rounded-none w-full rounded-br-lg"
+            >
+              comment
+            </Button>
+          </div>
         </div>
       </div>
     )
