@@ -14,7 +14,7 @@ const Authenticate = ({ children }) => {
     user && (url.includes("login") || url.includes("register"))
       ? navigate("/")
       : "";
-  }, [user, url]);
+  }, [user]);
 
   return <>{children}</>;
 };
