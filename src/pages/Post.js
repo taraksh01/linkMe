@@ -6,16 +6,25 @@ import PostCard from "./PostCard";
 const Post = () => {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
+
   useEffect(() => {
-    postService.getPost({ postId }).then((res) => setPost(res));
+    postService
+      .getPost({ postId })
+      .then(
+        (res) =>
+          res !== "Document with the requested ID could not be found." &&
+          setPost(res)
+      );
   }, [postId]);
 
-  return (
-    post && (
-      <div className="flex flex-wrap mx-auto my-2 max-w-2xl justify-center">
-        <PostCard data={post} />
-      </div>
-    )
+  return post ? (
+    <div className="flex flex-wrap mx-auto my-2 max-w-2xl justify-center">
+      <PostCard data={post} />
+    </div>
+  ) : (
+    <div className="flex flex-wrap mx-auto my-2 max-w-2xl justify-center">
+      Invalid postId
+    </div>
   );
 };
 
