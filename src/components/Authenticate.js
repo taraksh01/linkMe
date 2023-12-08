@@ -8,12 +8,12 @@ const Authenticate = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    !user && (url.includes("login") || url.includes("register"))
-      ? ""
-      : navigate("/login");
-    user && (url.includes("login") || url.includes("register"))
-      ? navigate("/")
-      : "";
+    if (user && (url.includes("login") || url.includes("register"))) {
+      navigate("/");
+    }
+    if (!user && !(url.includes("/login") || url.includes("/register"))) {
+      navigate("/login");
+    }
   }, [user]);
 
   return <>{children}</>;
