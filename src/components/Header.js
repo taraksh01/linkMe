@@ -19,7 +19,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="flex justify-between items-center shadow-md p-2 ">
+    <header className="flex justify-between items-center shadow-md py-1">
       <Link to={"/"}>
         <Logo>LinkMe</Logo>
       </Link>
