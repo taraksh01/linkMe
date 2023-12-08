@@ -12,9 +12,9 @@ const Home = () => {
     databaseService.getAllPosts().then((res) => setAllPosts(res));
   }, []);
   return authStatus === "authorized" ? (
-    <div className="flex flex-wrap mx-auto my-2 max-w-2xl justify-center">
+    <div className="flex flex-wrap gap-1 mx-auto my-2 max-w-2xl justify-center">
       {allPosts?.documents?.map((post) => (
-        <div key={post.$id} className="border w-full">
+        <div key={post.$id} className="w-full">
           <PostCard data={post} />
         </div>
       ))}
