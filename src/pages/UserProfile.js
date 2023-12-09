@@ -10,6 +10,7 @@ import Button from "../components/Button";
 
 const UserProfile = () => {
   const { username } = useParams();
+  const [loading, setLoading] = useState(true);
   const [validUser, setValidUser] = useState(null);
   const [userDetails, setUserDetails] = useState(null);
   const [userPosts, setUserPosts] = useState(null);
@@ -43,7 +44,15 @@ const UserProfile = () => {
   //   console.log(file);
   // };
 
-  return validUser == `userName is already taken` ? (
+  useEffect(() => {
+    validUser && setLoading(false);
+  }, [validUser]);
+
+  return loading ? (
+    <div className="max-w-2xl mx-auto m-2 p-2 text-4xl text-center">
+      Please wait while loading user details
+    </div>
+  ) : validUser == `userName is already taken` ? (
     <div className="max-w-2xl sm:mx-auto mx-1 flex flex-col">
       <div className="w-full">
         <img
