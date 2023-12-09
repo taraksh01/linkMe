@@ -26,6 +26,10 @@ const Signup = () => {
   const dispatch = useDispatch();
 
   const createAccount = async (data) => {
+    if (data?.userName?.includes(" ")) {
+      setMessage("Username cannot contain spaces");
+      return;
+    }
     try {
       const res = await authService.createAccount(data);
       if (res === "Account created successfully") {
@@ -88,9 +92,11 @@ const Signup = () => {
             required: true,
             onChange: async (e) => {
               setMessage(
-                e.target.value === ""
-                  ? "username can not be empty"
-                  : await userService.isAvailable("userName", e.target.value)
+                e?.target?.value === ""
+                  ? "username cannot be empty"
+                  : e?.target?.value.includes(" ")
+                  ? "username cannot contain space"
+                  : await userService.isAvailable("userName", e?.target?.value)
               );
             },
           })}
