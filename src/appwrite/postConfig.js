@@ -76,13 +76,13 @@ class PostService {
     }
   }
 
-  async updatePost({ postId, post, likes }) {
+  async updatePost({ postId, post, likes, comments }) {
     try {
       const data = await this.database.updateDocument(
         appconfig.appwritePostDbId,
         appconfig.appwritePostCollectionId,
         postId,
-        { post, likes }
+        { post, likes, comments }
       );
       if (data) {
         return data;
