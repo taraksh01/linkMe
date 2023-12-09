@@ -13,7 +13,7 @@ class AvatarService {
     this.avatar = new Avatars(this.client);
   }
 
-  getUserInitial(name, width = 50, height = 50) {
+  getUserInitial(name, width = 500, height = 500) {
     return this.avatar.getInitials(name, width, height);
   }
 
