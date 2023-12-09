@@ -13,7 +13,7 @@ const Home = () => {
   }, []);
   return authStatus === "authorized" ? (
     <div className="flex flex-wrap gap-1 mx-auto my-2 max-w-2xl justify-center">
-      {allPosts?.documents?.map((post) => (
+      {allPosts?.documents?.reverse().map((post) => (
         <div key={post.$id} className="w-full">
           <PostCard data={post} />
         </div>
