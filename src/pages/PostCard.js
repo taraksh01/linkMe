@@ -5,14 +5,24 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Like from "../components/Like";
 import Button from "../components/Button";
+import Comments from "../components/Comments";
 
 const Post = ({ data }) => {
-  const { $createdAt, $id, $permissions, $updatedAt, post, userId, likes } =
-    data;
+  const {
+    $createdAt,
+    $id,
+    $permissions,
+    $updatedAt,
+    post,
+    userId,
+    likes,
+    comments,
+  } = data;
   const [userDetails, setUserDetails] = useState(null);
   const loggedInUser = useSelector((state) => state?.authSlice?.user);
   const [profilePic, setProfilePic] = useState(null);
   const [postedAt, setPostedAt] = useState("");
+  const [hideComments, setHidecomments] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,6 +59,10 @@ const Post = ({ data }) => {
       : setProfilePic(fileService.previewFile(userDetails?.profilePic));
   }, [userDetails]);
 
+  const toggleComment = () => {
+    setHidecomments(!hideComments);
+  };
+
   return (
     userDetails && (
       <div className="rounded-lg bg-gray-100 w-full mx-auto">
@@ -67,7 +81,6 @@ const Post = ({ data }) => {
             <div className="px-2 self-start ml-auto text-2xl">⋮</div>
           )}
         </div>
-
         <div className="text-2xl text-justify p-2">
           <Link to={`/post/${$id}`}>{post}</Link>
         </div>
@@ -77,12 +90,23 @@ const Post = ({ data }) => {
           </div>
           <div className="w-1/2 text-center text-xl">
             <Button
-              disabled
-              bgColor="bg-gray-300 hover:opacity-100 rounded-none w-full rounded-br-lg"
+              bgColor="bg-purple-100"
+              color="text-purple-700"
+              className="rounded-none border-l-2 border-white w-full rounded-br-lg "
+              onClick={toggleComment}
             >
-              comment
+              Comments
             </Button>
           </div>
+        </div>
+        <div className="">
+          {!hideComments && (
+            <Comments
+              postId={$id}
+              data={comments}
+              hideComments={hideComments}
+            />
+          )}
         </div>
       </div>
     )
