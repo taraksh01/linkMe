@@ -157,7 +157,7 @@ const Form = ({
       <Input
         type="text"
         defaultValue={defaultValue}
-        placeholder="Add a comment (You can't edit or delete this later)"
+        placeholder="Add a comment"
         className="shadow-none"
         {...register(`${action}`, { required: true })}
       />
