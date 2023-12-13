@@ -6,7 +6,7 @@ import { TbThumbUp, TbThumbUpFilled } from "react-icons/tb";
 const Like = ({ post, likes, postId }) => {
   const loggedInUser = useSelector((state) => state?.authSlice?.user);
   const [allLikes, setAllLikes] = useState(likes);
-  const [liked, setLiked] = useState(allLikes.includes(loggedInUser?.name));
+  const [liked, setLiked] = useState(allLikes?.includes(loggedInUser?.name));
 
   useEffect(() => {
     postService.getPost({ postId }).then((res) => setAllLikes(res?.likes));
@@ -21,7 +21,7 @@ const Like = ({ post, likes, postId }) => {
           ? [...allLikes, loggedInUser?.name]
           : likes.filter((name) => name !== loggedInUser?.name),
       })
-      .then((res) => setAllLikes(res.likes));
+      .then((res) => setAllLikes(res?.likes));
     setLiked(!liked);
   };
 
